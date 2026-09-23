@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nona Elseedy 19 Birthday 💖</title>
+    <style>
+        body {
+            background-color: #ffffff; /* خلفية بيضاء */
+            color: #333; /* لون نص داكن ليتناسب مع الخلفية */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* تنسيق القلب الرئيسي في المنتصف */
+        .main-heart {
+            width: 100px;
+            height: 100px;
+            background-color: #ff2a54;
+            position: relative;
+            transform: rotate(-45deg);
+            animation: pulse 1.2s infinite;
+            box-shadow: 0 0 40px rgba(255, 42, 84, 0.4);
+            cursor: pointer;
+            transition: transform 0.5s;
+            z-index: 10;
+        }
+        .main-heart::before, .main-heart::after {
+            content: "";
+            width: 100px;
+            height: 100px;
+            background-color: #ff2a54;
+            border-radius: 50%;
+            position: absolute;
+        }
+        .main-heart::before {
+            top: -50px;
+            left: 0;
+        }
+        .main-heart::after {
+            top: 0;
+            left: 50px;
+        }
+
+        @keyframes pulse {
+            0% { transform: rotate(-45deg) scale(1); }
+            50% { transform: rotate(-45deg) scale(1.15); }
+            100% { transform: rotate(-45deg) scale(1); }
+        }
+
+        .message-container {
+            margin-top: 80px;
+            font-size: 1.5em;
+            text-align: center;
+            min-height: 50px;
+            padding: 0 20px;
+            line-height: 1.5;
+            color: #d81b60;
+            z-index: 10;
+            font-weight: bold;
+        }
+
+        .hint {
+            margin-top: 40px;
+            color: #888;
+            font-size: 0.9em;
+            animation: fadeInOut 2s infinite;
+            z-index: 10;
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* تنسيق الأشكال المتصاعدة */
+        .bubble-shape {
+            position: absolute;
+            bottom: -50px; /* تبدأ من تحت الشاشة */
+            pointer-events: none; /* حتى لا تعيق ضغطة الماوس على القلب الرئيسي */
+            animation: floatUp linear forwards;
+            opacity: 0;
+            z-index: 1; /* في الخلفية */
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(0.5) rotate(0deg);
+                opacity: 0;
+            }
+            15% {
+                opacity: 1;
+            }
+            85% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-110vh) scale(1.2) rotate(20deg); /* تصعد لأعلى الشاشة */
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-heart" id="heartBtn"></div>
+    <div class="hint" id="hintText">إلي المهندسة ندي خالد الصعيدي ، اضغطي على القلب</div>
+    <div class="message-container" id="msgBox"></div>
+
+    <script>
+        // --- هنا يمكنك تعديل أو إضافة الأشكال (الإيموجي) التي تريدها ---
+        // ضع الإيموجي بين علامات التنصيص وافصل بينهم بفاصلة
+        const userEmojis = ['💖', '🌸', '✨', '🎈', '🦋', '🥳', '🎂', '💌', '💗', '🤩','💕','💋','🌕','🌷','🍒','🧁', '🍰', '💵', '🕯️', '🩵', '🩷', '💘', '💗', '💜', '💛', '♥️','🎉','🐣','🍮','🚀','🪄','📍','💓','💝','💟','1️⃣9️⃣','🫂',"Nona 💖"];
+
+        function createBubble() {
+            const bubble = document.createElement('div');
+            bubble.classList.add('bubble-shape');
+            
+            // اختيار إيموجي عشوائي من القائمة الخاصة بك
+            const randomEmoji = userEmojis[Math.floor(Math.random() * userEmojis.length)];
+            bubble.innerHTML = randomEmoji;
+
+            // أحجام عشوائية للفقاعات (من 15 إلى 35 بيكسل)
+            const size = Math.random() * 20 + 15; 
+            
+            // أماكن عشوائية لظهورها على الشاشة (بالعرض)
+            const left = Math.random() * 100; 
+            
+            // سرعات عشوائية للتصاعد (من 4 إلى 8 ثواني)
+            const duration = Math.random() * 4 + 4; 
+
+            bubble.style.fontSize = `${size}px`;
+            bubble.style.left = `${left}vw`;
+            bubble.style.animationDuration = `${duration}s`;
+
+            document.body.appendChild(bubble);
+
+            // مسح الشكل من الصفحة بعد انتهاء حركته لتخفيف الحمل على الجهاز
+            setTimeout(() => {
+                bubble.remove();
+            }, duration * 1000);
+        }
+
+        // إنشاء شكل جديد كل 300 ملي ثانية
+        setInterval(createBubble, 300);
+
+
+        // --- تأثير النقر على القلب الرئيسي ---
+        const message = "كل العمر وأنت مميزة يا Pritty Nona 🎉✨";
+        const heartBtn = document.getElementById('heartBtn');
+        const msgBox = document.getElementById('msgBox');
+        const hint = document.getElementById('hintText');
+        let clicked = false;
+
+        heartBtn.addEventListener('click', function() {
+            if (clicked) return;
+            clicked = true;
+            
+            hint.style.display = 'none';
+            heartBtn.style.animation = 'none'; 
+            heartBtn.style.transform = 'rotate(-45deg) scale(1.3)';
+            heartBtn.style.boxShadow = '0 0 80px rgba(255, 42, 84, 0.6)';
+            
+            typeWriter();
+        });
+
+        let i = 0;
+        function typeWriter() {
+            if (i < message.length) {
+                msgBox.innerHTML += message.charAt(i);
+                i++;
+                setTimeout(typeWriter, 50); 
+            }
+        }
+    </script>
+</body>
+</html>
